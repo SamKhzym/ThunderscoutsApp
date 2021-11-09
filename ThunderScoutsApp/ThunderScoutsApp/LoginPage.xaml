@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ThunderScoutsApp"
+             x:Class="ThunderScoutsApp.LoginPage">
+    
+    <ContentPage.Content>
+
+        <StackLayout>
+
+            <Label 
+                Text="THUNDERSCOUTS 2020"
+                FontSize="Large"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand" />
+
+            <Image
+                Source="thunderstamps.jpg"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"/>
+
+            <Entry
+                Placeholder="First Name"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                x:Name="FirstNameEntry"
+                ClassId="FirstNameEntry"
+                TextChanged="OnEntryChanged" />
+
+            <Entry
+                Placeholder="Last Initial"
+                MaxLength="1"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                x:Name="LastInitialEntry"
+                ClassId="LastInitialEntry"
+                TextChanged="OnEntryChanged" />
+
+            <Button 
+                x:Name="LoginButton"
+                Clicked="goToScoutingPage_Clicked"
+                Text="Login"
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand" />
+
+        </StackLayout>
+        
+    </ContentPage.Content>
+    
+</ContentPage>

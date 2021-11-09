@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ThunderScoutsApp.TeleopPage">
+    
+    <ContentPage.Resources>
+        <x:Int32 x:Key="COLLECTION_BAY_ROW">0</x:Int32>
+        <x:Int32 x:Key="COLLECTION_GROUND_ROW">1</x:Int32>
+        <x:Int32 x:Key="SCORING_BOTTOM_HIT">2</x:Int32>
+        <x:Int32 x:Key="SCORING_BOTTOM_MISS">3</x:Int32>
+        <x:Int32 x:Key="SCORING_OUTER_HIT">4</x:Int32>
+        <x:Int32 x:Key="SCORING_OUTER_MISS">5</x:Int32>
+        <x:Int32 x:Key="SCORING_INNER">6</x:Int32>
+        <x:Int32 x:Key="CONTROL_PANEL_ROTATE">7</x:Int32>
+        <x:Int32 x:Key="CONTROL_PANEL_POSITION">8</x:Int32>
+
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Label 
+                Text="Welcome to Teleop Section!"
+                FontSize="Medium"
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <ScrollView>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--POWER CELL COLLECTION-->
+                    <BoxView 
+                        Color="LightBlue" 
+                        Grid.Row="{StaticResource COLLECTION_BAY_ROW}" 
+                        Grid.RowSpan="2" 
+                        Grid.ColumnSpan="5"/>
+
+                    <Label
+                        Grid.Row="{StaticResource COLLECTION_BAY_ROW}"
+                        Grid.Column="0"
+                        Text="Teleop Cells Collected"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label
+                        Grid.Row="{StaticResource COLLECTION_BAY_ROW}"
+                        Grid.Column="1"
+                        Text="0"
+                        FontSize="Large"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="CollectedCellsBayValue"/>
+
+                    <Button
+                        Grid.Row="{StaticResource COLLECTION_BAY_ROW}"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="-"
+                        ClassId="DecreaseCollectedBay"
+                        x:Name="DecreaseCollectedBay"
+                        Clicked="OnButtonClicked"/>
+
+                    <Label
+                        Grid.Row="{StaticResource COLLECTION_BAY_ROW}"
+                        Grid.Column="3"
+                        Text="Loading Bay"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Button
+                        Grid.Row="{StaticResource COLLECTION_BAY_ROW}"
+                        Grid.Column="4"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="+"
+                        ClassId="IncreaseCollectedBay"
+                        x:Name="IncreaseCollectedBay"
+                        Clicked="OnButtonClicked"/>
+
+                    <Label
+                        Grid.Row="{StaticResource COLLECTION_GROUND_ROW}"
+                        Grid.Column="1"
+                        Text="0"
+                        FontSize="Large"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="CollectedCellsGroundValue"/>
+
+                    <Button
+                        Grid.Row="{StaticResource COLLECTION_GROUND_ROW}"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="-"
+                        ClassId="DecreaseCollectedGround"
+                        x:Name="DecreaseCollectedGround"
+                        Clicked="OnButtonClicked"/>
+
+                    <Label
+                        Grid.Row="{StaticResource COLLECTION_GROUND_ROW}"
+                        Grid.Column="3"
+                        Text="Ground"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Button
+                        Grid.Row="{StaticResource COLLECTION_GROUND_ROW}"
+                        Grid.Column="4"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="+"
+                        ClassId="IncreaseCollectedGround"
+                        x:Name="IncreaseCollectedGround"
+                        Clicked="OnButtonClicked"/>
+
+                    <!--POWER CELL SCORING BOTTOM-->
+                    <Label
+                        Grid.Row="{StaticResource SCORING_BOTTOM_HIT}"
+                        Grid.Column="0"
+                        Text="Bottom Port Hit/Miss Ratio"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label
+                        Grid.Row="{StaticResource SCORING_BOTTOM_HIT}"
+                        Grid.Column="1"
+                        Text="0"
+                        FontSize="Large"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="BottomHitValue"/>
+
+                    <Button
+                        Grid.Row="{StaticResource SCORING_BOTTOM_HIT}"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="-"
+                        ClassId="DecreaseBottomHit"
+                        x:Name="DecreaseBottomHit"
+                        Clicked="OnButtonClicked"/>
+
+                    <Label
+                        Grid.Row="{StaticResource SCORING_BOTTOM_HIT}"
+                        Grid.Column="3"
+                        Text="Bottom Port HIT"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Button
+                        Grid.Row="{StaticResource SCORING_BOTTOM_HIT}"
+                        Grid.Column="4"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="+"
+                        ClassId="IncreaseBottomHit"
+                        x:Name="IncreaseBottomHit"
+                        Clicked="OnButtonClicked"/>
+
+                    <Label
+                        Grid.Row="{StaticResource SCORING_BOTTOM_MISS}"
+                        Grid.Column="1"
+                        Text="0"
+                        FontSize="Large"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="BottomMissValue"/>
+
+                    <Button
+                        Grid.Row="{StaticResource SCORING_BOTTOM_MISS}"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="-"
+                        ClassId="DecreaseBottomMiss"
+                        x:Name="DecreaseBottomMiss"
+                        Clicked="OnButtonClicked"/>
+
+                    <Label
+                        Grid.Row="{StaticResource SCORING_BOTTOM_MISS}"
+                        Grid.Column="3"
+                        Text="Bottom Port MISS"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Button
+                        Grid.Row="{StaticResource SCORING_BOTTOM_MISS}"
+                        Grid.Column="4"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="+"
+                        ClassId="IncreaseBottomMiss"
+                        x:Name="IncreaseBottomMiss"
+                        Clicked="OnButtonClicked"/>
+
+                    <!--POWER CELL SCORING OUTER-->
+                    <BoxView 
+                        Color="LightBlue" 
+                        Grid.Row="{StaticResource SCORING_OUTER_HIT}" 
+                        Grid.RowSpan="2" 
+                        Grid.ColumnSpan="5"/>
+                    
+                    <Label
+                        Grid.Row="{StaticResource SCORING_OUTER_HIT}"
+                        Grid.Column="0"
+                        Text="Outer Port Hit/Miss Ratio"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label
+                        Grid.Row="{StaticResource SCORING_OUTER_HIT}"
+                        Grid.Column="1"
+                        Text="0"
+                        FontSize="Large"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="OuterHitValue"/>
+
+                    <Button
+                        Grid.Row="{StaticResource SCORING_OUTER_HIT}"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="-"
+                        ClassId="DecreaseOuterHit"
+                        x:Name="DecreaseOuterHit"
+                        Clicked="OnButtonClicked"/>
+
+                    <Label
+                        Grid.Row="{StaticResource SCORING_OUTER_HIT}"
+                        Grid.Column="3"
+                        Text="Outer Port HIT"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Button
+                        Grid.Row="{StaticResource SCORING_OUTER_HIT}"
+                        Grid.Column="4"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="+"
+                        ClassId="IncreaseOuterHit"
+                        x:Name="IncreaseOuterHit"
+                        Clicked="OnButtonClicked"/>
+
+                    <Label
+                        Grid.Row="{StaticResource SCORING_OUTER_MISS}"
+                        Grid.Column="1"
+                        Text="0"
+                        FontSize="Large"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="OuterMissValue"/>
+
+                    <Button
+                        Grid.Row="{StaticResource SCORING_OUTER_MISS}"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="-"
+                        ClassId="DecreaseOuterMiss"
+                        x:Name="DecreaseOuterMiss"
+                        Clicked="OnButtonClicked"/>
+
+                    <Label
+                        Grid.Row="{StaticResource SCORING_OUTER_MISS}"
+                        Grid.Column="3"
+                        Text="Outer Port MISS"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Button
+                        Grid.Row="{StaticResource SCORING_OUTER_MISS}"
+                        Grid.Column="4"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="+"
+                        ClassId="IncreaseOuterMiss"
+                        x:Name="IncreaseOuterMiss"
+                        Clicked="OnButtonClicked"/>
+
+                    <!--POWER CELL SCORING INNER-->
+                    <Label
+                        Grid.Row="{StaticResource SCORING_INNER}"
+                        Grid.Column="0"
+                        Text="Inner Port Hits"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label
+                        Grid.Row="{StaticResource SCORING_INNER}"
+                        Grid.Column="1"
+                        Text="0"
+                        FontSize="Large"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="InnerHitValue"/>
+
+                    <Button
+                        Grid.Row="{StaticResource SCORING_INNER}"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="-"
+                        ClassId="DecreaseInnerHit"
+                        x:Name="DecreaseInnerHit"
+                        Clicked="OnButtonClicked"/>
+
+                    <Label
+                        Grid.Row="{StaticResource SCORING_INNER}"
+                        Grid.Column="3"
+                        Text="Inner Port HIT"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Button
+                        Grid.Row="{StaticResource SCORING_INNER}"
+                        Grid.Column="4"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="+"
+                        ClassId="IncreaseInnerHit"
+                        x:Name="IncreaseInnerHit"
+                        Clicked="OnButtonClicked"/>
+                    
+                    <!--CONTROL PANEL CONTROL-->
+                    <BoxView 
+                        Color="LightBlue" 
+                        Grid.Row="{StaticResource CONTROL_PANEL_ROTATE}" 
+                        Grid.RowSpan="2" 
+                        Grid.ColumnSpan="5"/>
+
+                    <Label
+                        Grid.Row="{StaticResource CONTROL_PANEL_ROTATE}"
+                        Grid.Column="0"
+                        Text="Control Panel Capability"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label 
+                        Grid.Row="{StaticResource CONTROL_PANEL_ROTATE}" 
+                        Grid.Column="1" 
+                        Grid.ColumnSpan="3"
+                        Text="Rotation Control" 
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"/>
+
+                    <Switch
+                        Grid.Row="{StaticResource CONTROL_PANEL_ROTATE}" 
+                        Grid.Column="4"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"
+                        x:Name="RotationSwitch"
+                        ClassId="RotationSwitch"
+                        Toggled="OnSwitchTriggered"/>
+
+                    <Label 
+                        Grid.Row="{StaticResource CONTROL_PANEL_POSITION}" 
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Text="Position Control" 
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"/>
+
+                    <Switch
+                        Grid.Row="{StaticResource CONTROL_PANEL_POSITION}" 
+                        Grid.Column="4"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"
+                        x:Name="PositionSwitch"
+                        ClassId="PositionSwitch"
+                        Toggled="OnSwitchTriggered"/>
+
+                </Grid>
+
+            </ScrollView>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,632 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ThunderScoutsApp.EndgamePage">
+
+    <ContentPage.Resources>
+        <x:Int32 x:Key="ENDGAME_LABEL_ROW">0</x:Int32>
+        <x:Int32 x:Key="CLIMB_POSITION_ROW">1</x:Int32>
+        <x:Int32 x:Key="CLIMB_STATUS_ROW">2</x:Int32>
+        <x:Int32 x:Key="PENALTIES_ROW">3</x:Int32>
+        <x:Int32 x:Key="REVIEW_LABEL_ROW">4</x:Int32>
+        <x:Int32 x:Key="DEFENSE_QUALITY_ROW">5</x:Int32>
+        <x:Int32 x:Key="MATCH_ROLES_LABEL_ROW">6</x:Int32>
+        <x:Int32 x:Key="MATCH_ROLES_ROW">7</x:Int32>
+        <x:Int32 x:Key="MATCH_ROLES_REBOUND_ROW">8</x:Int32>
+        <x:Int32 x:Key="MATCH_ROLES_TRENCH_ROW">9</x:Int32>
+        <x:Int32 x:Key="MATCH_ROLES_GEN_ROW">10</x:Int32>
+        <x:Int32 x:Key="MATCH_ROLES_SNIPER_ROW">11</x:Int32>
+        <x:Int32 x:Key="RED_ALLIANCE_LABEL_ROW">12</x:Int32>
+        <x:Int32 x:Key="RED_ALLIANCE_POINTS_ROW">13</x:Int32>
+        <x:Int32 x:Key="RED_ALLIANCE_PENALTIES_ROW">14</x:Int32>
+        <x:Int32 x:Key="RED_ALLIANCE_RP_ROW">15</x:Int32>
+        <x:Int32 x:Key="BLUE_ALLIANCE_LABEL_ROW">16</x:Int32>
+        <x:Int32 x:Key="BLUE_ALLIANCE_POINTS_ROW">17</x:Int32>
+        <x:Int32 x:Key="BLUE_ALLIANCE_PENALTIES_ROW">18</x:Int32>
+        <x:Int32 x:Key="BLUE_ALLIANCE_RP_ROW">19</x:Int32>
+        
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+
+        <StackLayout>
+
+            <Label 
+                Text="Welcome to Endgame/Review Section!"
+                FontSize="Medium"
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <ScrollView>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Row="{StaticResource ENDGAME_LABEL_ROW}"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="5"
+                        Text="ENDGAME"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        FontSize="Medium"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center"/>
+                    
+                    <!--CLIMB POSITION-->
+                    <BoxView
+                        Grid.Row="{StaticResource CLIMB_POSITION_ROW}"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="5"
+                        Grid.RowSpan="2"
+                        Color="LightBlue"/>
+
+                    <Label
+                        Grid.Row="{StaticResource CLIMB_POSITION_ROW}"
+                        Grid.Column="0"
+                        Text="Climb Position"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center"/>
+
+                    <Picker 
+                        Title="Select a Climb Position"
+                        FontSize="Small"
+                        Grid.Row="{StaticResource CLIMB_POSITION_ROW}" 
+                        Grid.Column="2"
+                        Grid.ColumnSpan="3"
+                        VerticalOptions="Center"
+                        HorizontalOptions="StartAndExpand"
+                        x:Name="ClimbPosPicker"
+                        ClassId="ClimbPosPicker"
+                        SelectedIndexChanged="OnPickerChanged">
+                        <Picker.Items>
+                            <x:String>None</x:String>
+                            <x:String>Side (Level)</x:String>
+                            <x:String>Side (High)</x:String>
+                            <x:String>Middle</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <!--Climb Effectiveness-->
+                    <Label
+                        Grid.Row="{StaticResource CLIMB_STATUS_ROW}"
+                        Grid.Column="0"
+                        Text="Climb Effectiveness"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center"/>
+
+                    <Picker 
+                        Title="Select Climb Effectiveness"
+                        FontSize="Small"
+                        Grid.Row="{StaticResource CLIMB_STATUS_ROW}" 
+                        Grid.Column="2"
+                        Grid.ColumnSpan="3"
+                        VerticalOptions="Center"
+                        HorizontalOptions="StartAndExpand"
+                        x:Name="ClimbStatusPicker"
+                        ClassId="ClimbStatusPicker"
+                        SelectedIndexChanged="OnPickerChanged">
+                        <Picker.Items>
+                            <x:String>No Climb</x:String>
+                            <x:String>Failed Climb</x:String>
+                            <x:String>Climbed and Moved</x:String>
+                            <x:String>Climbed and Leveled</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    
+                    <!--PENALTIES-->
+                    <Label
+                        Grid.Row="{StaticResource PENALTIES_ROW}"
+                        Grid.Column="0"
+                        Text="Penalties Taken"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label
+                        Grid.Row="{StaticResource PENALTIES_ROW}"
+                        Grid.Column="1"
+                        Text="0"
+                        FontSize="Large"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="PenaltiesValue"/>
+
+                    <Button
+                        Grid.Row="{StaticResource PENALTIES_ROW}"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="-"
+                        ClassId="DecreasePenalties"
+                        x:Name="DecreasePenalties"
+                        Clicked="OnButtonClicked"/>
+
+                    <Label
+                        Grid.Row="{StaticResource PENALTIES_ROW}"
+                        Grid.Column="3"
+                        Text="Penalties"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Button
+                        Grid.Row="{StaticResource PENALTIES_ROW}"
+                        Grid.Column="4"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="+"
+                        ClassId="IncreasePenalties"
+                        x:Name="IncreasePenalties"
+                        Clicked="OnButtonClicked"/>
+                    
+                    <!--MATCH REVIEW-->
+                    <Label
+                        Grid.Row="{StaticResource REVIEW_LABEL_ROW}"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="5"
+                        Text="MATCH REVIEW"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        FontSize="Medium"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center"/>
+                    
+                    <!--DEFENSE QUALITY-->
+                    <BoxView
+                        Grid.Row="{StaticResource DEFENSE_QUALITY_ROW}"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="5"
+                        Grid.RowSpan="1"
+                        Color="LightBlue"/>
+                    
+                    <Label
+                        Grid.Row="{StaticResource DEFENSE_QUALITY_ROW}"
+                        Grid.Column="0"
+                        Text="Defense Quality"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label
+                        Grid.Row="{StaticResource DEFENSE_QUALITY_ROW}"
+                        Grid.Column="0"
+                        FontSize="Micro"
+                        Text="(0=none, 1=bad, 10=good)"
+                        FontAttributes="Bold"
+                        VerticalOptions="End" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label
+                        Grid.Row="{StaticResource DEFENSE_QUALITY_ROW}"
+                        Grid.Column="1"
+                        Text="0"
+                        FontSize="Large"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="DefenseQualityValue"/>
+
+                    <Slider
+                        Grid.Row="{StaticResource DEFENSE_QUALITY_ROW}"
+                        Grid.Column="2"
+                        Grid.ColumnSpan="3"
+                        Maximum="10"
+                        ValueChanged="OnSliderValueChanged"
+                        ClassId="DefenseQualitySlider"
+                        x:Name="DefenseQualitySlider"/>
+
+                    <Label
+                        Grid.Row="{StaticResource DEFENSE_QUALITY_ROW}"
+                        Grid.Column="2"
+                        Text="   0"
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="Start"/>
+
+                    <Label
+                        Grid.Row="{StaticResource DEFENSE_QUALITY_ROW}"
+                        Grid.Column="4"
+                        Text="10   "
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="End"/>
+
+                    <!--ROLES SLIDERS-->
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_LABEL_ROW}"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="5"
+                        Text="Match Roles (Percentages)"
+                        FontSize="Medium"
+                        VerticalOptions="End" 
+                        HorizontalOptions="CenterAndExpand"/>
+                    
+                    <!--DEFENSE-->
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_ROW}"
+                        Grid.Column="0"
+                        Text="Defense"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_ROW}"
+                        Grid.Column="1"
+                        Text="0%"
+                        FontSize="Small"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="DefensePercentValue"/>
+
+                    <Slider
+                        Grid.Row="{StaticResource MATCH_ROLES_ROW}"
+                        Grid.Column="2"
+                        Grid.ColumnSpan="3"
+                        Maximum="100"
+                        ValueChanged="OnSliderValueChanged"
+                        ClassId="DefensePercentSlider"
+                        x:Name="DefensePercentSlider"/>
+
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_ROW}"
+                        Grid.Column="2"
+                        Text="   0"
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="Start"/>
+
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_ROW}"
+                        Grid.Column="4"
+                        Text="100  "
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="End"/>
+
+                    <!--REBOUND-->
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_REBOUND_ROW}"
+                        Grid.Column="0"
+                        Text="Rebound"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_REBOUND_ROW}"
+                        Grid.Column="1"
+                        Text="0%"
+                        FontSize="Small"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="ReboundPercentValue"/>
+
+                    <Slider
+                        Grid.Row="{StaticResource MATCH_ROLES_REBOUND_ROW}"
+                        Grid.Column="2"
+                        Grid.ColumnSpan="3"
+                        Maximum="100"
+                        ValueChanged="OnSliderValueChanged"
+                        ClassId="ReboundPercentSlider"
+                        x:Name="ReboundPercentSlider"/>
+
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_REBOUND_ROW}"
+                        Grid.Column="2"
+                        Text="   0"
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="Start"/>
+
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_REBOUND_ROW}"
+                        Grid.Column="4"
+                        Text="100  "
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="End"/>
+
+                    <!--TRENCH-->
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_TRENCH_ROW}"
+                        Grid.Column="0"
+                        Text="Trench"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_TRENCH_ROW}"
+                        Grid.Column="1"
+                        Text="0%"
+                        FontSize="Small"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="TrenchPercentValue"/>
+
+                    <Slider
+                        Grid.Row="{StaticResource MATCH_ROLES_TRENCH_ROW}"
+                        Grid.Column="2"
+                        Grid.ColumnSpan="3"
+                        Maximum="100"
+                        ValueChanged="OnSliderValueChanged"
+                        ClassId="TrenchPercentSlider"
+                        x:Name="TrenchPercentSlider"/>
+
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_TRENCH_ROW}"
+                        Grid.Column="2"
+                        Text="   0"
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="Start"/>
+
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_TRENCH_ROW}"
+                        Grid.Column="4"
+                        Text="100  "
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="End"/>
+
+                    <!--GEN CYCLE-->
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_GEN_ROW}"
+                        Grid.Column="0"
+                        Text="Generator Cycle"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_GEN_ROW}"
+                        Grid.Column="1"
+                        Text="0%"
+                        FontSize="Small"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="GenPercentValue"/>
+
+                    <Slider
+                        Grid.Row="{StaticResource MATCH_ROLES_GEN_ROW}"
+                        Grid.Column="2"
+                        Grid.ColumnSpan="3"
+                        Maximum="100"
+                        ValueChanged="OnSliderValueChanged"
+                        ClassId="GenPercentSlider"
+                        x:Name="GenPercentSlider"/>
+
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_GEN_ROW}"
+                        Grid.Column="2"
+                        Text="   0"
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="Start"/>
+
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_GEN_ROW}"
+                        Grid.Column="4"
+                        Text="100  "
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="End"/>
+
+                    <!--Sniper CYCLE-->
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_SNIPER_ROW}"
+                        Grid.Column="0"
+                        Text="Sniper Cycle"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_SNIPER_ROW}"
+                        Grid.Column="1"
+                        Text="0%"
+                        FontSize="Small"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="SniperPercentValue"/>
+
+                    <Slider
+                        Grid.Row="{StaticResource MATCH_ROLES_SNIPER_ROW}"
+                        Grid.Column="2"
+                        Grid.ColumnSpan="3"
+                        Maximum="100"
+                        ValueChanged="OnSliderValueChanged"
+                        ClassId="SniperPercentSlider"
+                        x:Name="SniperPercentSlider"/>
+
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_SNIPER_ROW}"
+                        Grid.Column="2"
+                        Text="   0"
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="Start"/>
+
+                    <Label
+                        Grid.Row="{StaticResource MATCH_ROLES_SNIPER_ROW}"
+                        Grid.Column="4"
+                        Text="100  "
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="End"/>
+                    
+                    <!--RED ALLIANCE SCORES-->
+                    <BoxView
+                        Grid.Row="{StaticResource RED_ALLIANCE_POINTS_ROW}"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="5"
+                        Grid.RowSpan="3"
+                        Color="#ff7878"/>
+
+                    <Label
+                        Grid.Row="{StaticResource RED_ALLIANCE_LABEL_ROW}"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="5"
+                        FontSize="Medium"
+                        Text="Red Alliance Scores"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Label
+                        Grid.Row="{StaticResource RED_ALLIANCE_POINTS_ROW}"
+                        Grid.Column="0"
+                        Text="Red Alliance Points"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Entry
+                        Grid.Row="{StaticResource RED_ALLIANCE_POINTS_ROW}"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="4"
+                        Placeholder="Red Points"
+                        Keyboard="Numeric"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="StartAndExpand"
+                        x:Name="RedPoints"
+                        ClassId="RedPoints"
+                        TextChanged="OnEntryChanged"/>
+
+                    <Label
+                        Grid.Row="{StaticResource RED_ALLIANCE_PENALTIES_ROW}"
+                        Grid.Column="0"
+                        Text="Red Alliance Penalties"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Entry
+                        Grid.Row="{StaticResource RED_ALLIANCE_PENALTIES_ROW}"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="4"
+                        Placeholder="Red Penalties"
+                        Keyboard="Numeric"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="StartAndExpand"
+                        x:Name="RedPenalties"
+                        ClassId="RedPenalties"
+                        TextChanged="OnEntryChanged"/>
+
+                    <Label
+                        Grid.Row="{StaticResource RED_ALLIANCE_RP_ROW}"
+                        Grid.Column="0"
+                        Text="Red Alliance RP"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Entry
+                        Grid.Row="{StaticResource RED_ALLIANCE_RP_ROW}"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="4"
+                        Placeholder="Red RP"
+                        Keyboard="Numeric"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="StartAndExpand"
+                        x:Name="RedRP"
+                        ClassId="RedRP"
+                        TextChanged="OnEntryChanged"/>
+
+                    <!--BLUE ALLIANCE SCORES-->
+                    <BoxView
+                        Grid.Row="{StaticResource BLUE_ALLIANCE_POINTS_ROW}"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="5"
+                        Grid.RowSpan="3"
+                        Color="#6b93fa"/>
+
+                    <Label
+                        Grid.Row="{StaticResource BLUE_ALLIANCE_LABEL_ROW}"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="5"
+                        FontSize="Medium"
+                        Text="Blue Alliance Scores"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Label
+                        Grid.Row="{StaticResource BLUE_ALLIANCE_POINTS_ROW}"
+                        Grid.Column="0"
+                        Text="Blue Alliance Points"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Entry
+                        Grid.Row="{StaticResource BLUE_ALLIANCE_POINTS_ROW}"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="4"
+                        Placeholder="Blue Points"
+                        Keyboard="Numeric"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="StartAndExpand"
+                        x:Name="BluePoints"
+                        ClassId="BluePoints"
+                        TextChanged="OnEntryChanged"/>
+
+                    <Label
+                        Grid.Row="{StaticResource BLUE_ALLIANCE_PENALTIES_ROW}"
+                        Grid.Column="0"
+                        Text="Blue Alliance Penalties"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Entry
+                        Grid.Row="{StaticResource BLUE_ALLIANCE_PENALTIES_ROW}"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="4"
+                        Placeholder="Blue Penalties"
+                        Keyboard="Numeric"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="StartAndExpand"
+                        x:Name="BluePenalties"
+                        ClassId="BluePenalties"
+                        TextChanged="OnEntryChanged"/>
+
+                    <Label
+                        Grid.Row="{StaticResource BLUE_ALLIANCE_RP_ROW}"
+                        Grid.Column="0"
+                        Text="Blue Alliance RP"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Entry
+                        Grid.Row="{StaticResource BLUE_ALLIANCE_RP_ROW}"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="4"
+                        Placeholder="Blue RP"
+                        Keyboard="Numeric"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="StartAndExpand"
+                        x:Name="BlueRP"
+                        ClassId="BlueRP"
+                        TextChanged="OnEntryChanged"/>
+
+                </Grid>
+
+            </ScrollView>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+    
+</ContentPage>

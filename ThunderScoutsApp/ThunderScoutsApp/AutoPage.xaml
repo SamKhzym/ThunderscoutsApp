@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ThunderScoutsApp.AutoPage">
+
+    <ContentPage.Resources>
+        <x:Int32 x:Key="PRELOADED_SLIDER_ROW">0</x:Int32>
+        <x:Int32 x:Key="STARTING_POS_ROW">1</x:Int32>
+        <x:Int32 x:Key="DIRECTION_MOVED_ROW">2</x:Int32>
+        <x:Int32 x:Key="TRENCH_SLIDER_ROW">3</x:Int32>
+        <x:Int32 x:Key="ENEMY_SLIDER_ROW">4</x:Int32>
+        <x:Int32 x:Key="SHIELD_SLIDER_ROW">5</x:Int32>
+        <x:Int32 x:Key="AUTO_BOTTOM_ROW"> 6 </x:Int32>
+        <x:Int32 x:Key="AUTO_OUTER_ROW"> 7 </x:Int32>
+        <x:Int32 x:Key="AUTO_INNER_ROW"> 8 </x:Int32>
+
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Label 
+                Text="Welcome to Auto Section!"
+                FontSize="Medium"
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <ScrollView>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--CELLS PRELOADED SLIDER-->
+                    <BoxView 
+                        Color="LightBlue" 
+                        Grid.Row="{StaticResource PRELOADED_SLIDER_ROW}" 
+                        Grid.RowSpan="1" 
+                        Grid.ColumnSpan="5"/>
+                    
+                    <Label
+                        Grid.Row="{StaticResource PRELOADED_SLIDER_ROW}"
+                        Grid.Column="0"
+                        Text="Cells Preloaded"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center"/>
+
+                    <Label
+                        Grid.Row="{StaticResource PRELOADED_SLIDER_ROW}"
+                        Grid.Column="1"
+                        Text="0"
+                        FontSize="Large"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="PreloadSliderValue"/>
+
+                    <Label
+                        Grid.Row="{StaticResource PRELOADED_SLIDER_ROW}"
+                        Grid.Column="2"
+                        Text="   0"
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="Start"/>
+
+                    <Label
+                        Grid.Row="{StaticResource PRELOADED_SLIDER_ROW}"
+                        Grid.Column="4"
+                        Text="3   "
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="End"/>
+
+                    <Slider
+                        Grid.Row="{StaticResource PRELOADED_SLIDER_ROW}"
+                        Grid.Column="2"
+                        Grid.ColumnSpan="3"
+                        Maximum="3"
+                        ValueChanged="OnSliderValueChanged"
+                        ClassId="PreloadCellSlider"
+                        x:Name="PreloadCellSlider"/>
+
+                    <!--STARTING POS SWITCHES-->
+                    <Label
+                        Grid.Row="{StaticResource STARTING_POS_ROW}"
+                        Grid.Column="0"
+                        Text="Starting Position"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center"/>
+
+                    <Picker 
+                        Title="Select a Starting Position"
+                        FontSize="Small"
+                        Grid.Row="{StaticResource STARTING_POS_ROW}" 
+                        Grid.Column="2"
+                        Grid.ColumnSpan="3"
+                        VerticalOptions="Center"
+                        HorizontalOptions="StartAndExpand"
+                        x:Name="StartingPosPicker"
+                        ClassId="StartingPosPicker"
+                        SelectedIndexChanged="OnPickerValueChanged">
+                        <Picker.Items>
+                            <x:String>Position 1</x:String>
+                            <x:String>Position 2</x:String>
+                            <x:String>Position 3</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <!--DIRECTION MOVED-->
+                    <BoxView 
+                        Color="LightBlue" 
+                        Grid.Row="{StaticResource DIRECTION_MOVED_ROW}" 
+                        Grid.RowSpan="1" 
+                        Grid.ColumnSpan="5"/>
+                    
+                    <Label
+                        Grid.Row="{StaticResource DIRECTION_MOVED_ROW}"
+                        Grid.Column="0"
+                        Text="Direction Moved"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center"/>
+
+                    <Picker 
+                        Title="Pick a Direction"
+                        FontSize="Small"
+                        Grid.Row="{StaticResource DIRECTION_MOVED_ROW}" 
+                        Grid.Column="2"
+                        Grid.ColumnSpan="3"
+                        VerticalOptions="Center"
+                        HorizontalOptions="StartAndExpand"
+                        x:Name="DirMovedPicker"
+                        ClassId="DirMovedPicker"
+                        SelectedIndexChanged="OnPickerValueChanged">
+                        <Picker.Items>
+                            <x:String>Forwards</x:String>
+                            <x:String>Backwards</x:String>
+                            <x:String>None</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <!--TRENCH CELLS SLIDER-->
+                    <Label
+                        Grid.Row="{StaticResource TRENCH_SLIDER_ROW}"
+                        Grid.Column="0"
+                        Text="Trench Cells Collected"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label
+                        Grid.Row="{StaticResource TRENCH_SLIDER_ROW}"
+                        Grid.Column="1"
+                        Text="0"
+                        FontSize="Large"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="TrenchSliderValue"/>
+
+                    <Label
+                        Grid.Row="{StaticResource TRENCH_SLIDER_ROW}"
+                        Grid.Column="2"
+                        Text="   0"
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="Start"/>
+
+                    <Label
+                        Grid.Row="{StaticResource TRENCH_SLIDER_ROW}"
+                        Grid.Column="4"
+                        Text="5   "
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="End"/>
+
+                    <Slider
+                        Grid.Row="{StaticResource TRENCH_SLIDER_ROW}"
+                        Grid.Column="2"
+                        Grid.ColumnSpan="3"
+                        Maximum="5"
+                        ValueChanged="OnSliderValueChanged"
+                        ClassId="TrenchCellSlider"
+                        x:Name="TrenchCellSlider"/>
+
+                    <!--ENEMY CELLS SLIDER-->
+                    <BoxView 
+                        Color="LightBlue" 
+                        Grid.Row="{StaticResource ENEMY_SLIDER_ROW}" 
+                        Grid.RowSpan="1" 
+                        Grid.ColumnSpan="5"/>
+                    
+                    <Label
+                        Grid.Row="{StaticResource ENEMY_SLIDER_ROW}"
+                        Grid.Column="0"
+                        Text="Enemy Trench Cells Collected"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label
+                        Grid.Row="{StaticResource ENEMY_SLIDER_ROW}"
+                        Grid.Column="1"
+                        Text="0"
+                        FontSize="Large"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="EnemyTrenchSliderValue"/>
+
+                    <Label
+                        Grid.Row="{StaticResource ENEMY_SLIDER_ROW}"
+                        Grid.Column="2"
+                        Text="   0"
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="Start"/>
+
+                    <Label
+                        Grid.Row="{StaticResource ENEMY_SLIDER_ROW}"
+                        Grid.Column="4"
+                        Text="5   "
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="End"/>
+
+                    <Slider
+                        Grid.Row="{StaticResource ENEMY_SLIDER_ROW}"
+                        Grid.Column="2"
+                        Grid.ColumnSpan="3"
+                        Maximum="5"
+                        ValueChanged="OnSliderValueChanged"
+                        ClassId="EnemyTrenchCellSlider"
+                        x:Name="EnemyTrenchCellSlider"/>
+
+                    <!--SHIELD GEN CELLS SLIDER-->
+                    <Label
+                        Grid.Row="{StaticResource SHIELD_SLIDER_ROW}"
+                        Grid.Column="0"
+                        Text="Shield Gen Cells Collected"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label
+                        Grid.Row="{StaticResource SHIELD_SLIDER_ROW}"
+                        Grid.Column="1"
+                        Text="0"
+                        FontSize="Large"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="ShieldGenSliderValue"/>
+
+                    <Label
+                        Grid.Row="{StaticResource SHIELD_SLIDER_ROW}"
+                        Grid.Column="2"
+                        Text="   0"
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="Start"/>
+
+                    <Label
+                        Grid.Row="{StaticResource SHIELD_SLIDER_ROW}"
+                        Grid.Column="4"
+                        Text="5   "
+                        FontSize="Small"
+                        VerticalOptions="End" 
+                        HorizontalOptions="End"/>
+
+                    <Slider
+                        Grid.Row="{StaticResource SHIELD_SLIDER_ROW}"
+                        Grid.Column="2"
+                        Grid.ColumnSpan="3"
+                        Maximum="5"
+                        ValueChanged="OnSliderValueChanged"
+                        ClassId="ShieldGenCellSlider"
+                        x:Name="ShieldGenCellSlider"/>
+                    
+                    <!--CELLS SCORED IN AUTO-->
+                    <BoxView 
+                        Color="LightBlue" 
+                        Grid.Row="{StaticResource AUTO_BOTTOM_ROW}" 
+                        Grid.RowSpan="3" 
+                        Grid.ColumnSpan="5"/>
+                    
+                    <Label
+                        Grid.Row="{StaticResource AUTO_BOTTOM_ROW}"
+                        Grid.Column="0"
+                        Text="Auto Power Cells Scored"
+                        FontAttributes="Bold"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Label
+                        Grid.Row="{StaticResource AUTO_BOTTOM_ROW}"
+                        Grid.Column="1"
+                        Text="0"
+                        FontSize="Large"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="BottomScoredValue"/>
+
+                    <Button
+                        Grid.Row="{StaticResource AUTO_BOTTOM_ROW}"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="-"
+                        ClassId="DecreaseBottom"
+                        x:Name="DecreaseBottom"
+                        Clicked="OnButtonClicked"/>
+
+                    <Label
+                        Grid.Row="{StaticResource AUTO_BOTTOM_ROW}"
+                        Grid.Column="3"
+                        Text="Bottom Port"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Button
+                        Grid.Row="{StaticResource AUTO_BOTTOM_ROW}"
+                        Grid.Column="4"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="+"
+                        ClassId="IncreaseBottom"
+                        x:Name="IncreaseBottom"
+                        Clicked="OnButtonClicked"/>
+
+                    <Label
+                        Grid.Row="{StaticResource AUTO_OUTER_ROW}"
+                        Grid.Column="1"
+                        Text="0"
+                        FontSize="Large"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="OuterScoredValue"/>
+
+                    <Button
+                        Grid.Row="{StaticResource AUTO_OUTER_ROW}"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="-"
+                        ClassId="DecreaseOuter"
+                        x:Name="DecreaseOuter"
+                        Clicked="OnButtonClicked"/>
+
+                    <Label
+                        Grid.Row="{StaticResource AUTO_OUTER_ROW}"
+                        Grid.Column="3"
+                        Text="Outer Port"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Button
+                        Grid.Row="{StaticResource AUTO_OUTER_ROW}"
+                        Grid.Column="4"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="+"
+                        ClassId="IncreaseOuter"
+                        x:Name="IncreaseOuter"
+                        Clicked="OnButtonClicked"/>
+
+                    <Label
+                        Grid.Row="{StaticResource AUTO_INNER_ROW}"
+                        Grid.Column="1"
+                        Text="0"
+                        FontSize="Large"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        x:Name="InnerScoredValue"/>
+
+                    <Button
+                        Grid.Row="{StaticResource AUTO_INNER_ROW}"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="-"
+                        ClassId="DecreaseInner"
+                        x:Name="DecreaseInner"
+                        Clicked="OnButtonClicked"/>
+
+                    <Label
+                        Grid.Row="{StaticResource AUTO_INNER_ROW}"
+                        Grid.Column="3"
+                        Text="Inner Port"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Button
+                        Grid.Row="{StaticResource AUTO_INNER_ROW}"
+                        Grid.Column="4"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="+"
+                        ClassId="IncreaseInner"
+                        x:Name="IncreaseInner"
+                        Clicked="OnButtonClicked"/>
+
+                </Grid>
+
+            </ScrollView>
+
+        </StackLayout>
+        
+    </ContentPage.Content>
+    
+</ContentPage>

@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ThunderScoutsApp"
+             x:Class="ThunderScoutsApp.MainPage">
+
+    <StackLayout>
+        <!-- Place new controls here -->
+        <Label 
+            Text="Welcome to Info Section!"
+            FontSize="Medium"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" />
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Label 
+                Grid.Row="0" 
+                Grid.Column="0" 
+                FontAttributes="Bold"
+                Text="Team Number" 
+                VerticalOptions="Center"/>
+            
+            <Entry  
+                Grid.Row="0" 
+                Grid.Column="1" 
+                Placeholder="Team Number"
+                Keyboard="Numeric"
+                VerticalOptions="Center"
+                Grid.ColumnSpan="2"
+                x:Name="TeamNumberEntry"
+                ClassId="TeamNumberEntry"
+                TextChanged="OnEntryChanged"/>
+
+            <Label 
+                Grid.Row="1" 
+                Grid.Column="0" 
+                Text="Match Number" 
+                FontAttributes="Bold"
+                VerticalOptions="Center"/>
+
+            <Entry  
+                Grid.Row="1" 
+                Grid.Column="1" 
+                Placeholder="Match Number"
+                Keyboard="Numeric"
+                VerticalOptions="Center"
+                Grid.ColumnSpan="2"
+                x:Name="MatchNumberEntry"
+                ClassId="MatchNumberEntry"
+                TextChanged="OnEntryChanged"/>
+
+            <Label 
+                Grid.Row="2" 
+                Grid.Column="0" 
+                FontAttributes="Bold"
+                Text="Alliance Colour" 
+                VerticalOptions="Center"/>
+
+            <Picker 
+                Title="Alliance Colour"
+                FontSize="Small"
+                Grid.Row="2" 
+                Grid.Column="1"
+                VerticalOptions="Center"
+                HorizontalOptions="StartAndExpand"
+                x:Name="AllianceColourPicker"
+                ClassId="AllianceColourPicker"
+                SelectedIndexChanged="OnPickerValueChanged">
+                <Picker.Items>
+                    <x:String>Red</x:String>
+                    <x:String>Blue</x:String>
+                </Picker.Items>
+            </Picker>
+
+        </Grid>
+
+    </StackLayout>
+
+</ContentPage>

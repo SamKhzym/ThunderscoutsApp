@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ThunderScoutsApp"
+             x:Class="ThunderScoutsApp.ScoutingHubPage">
+
+    <NavigationPage Title="MAIN">
+        <x:Arguments>
+            <local:MainPage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="AUTO">
+        <x:Arguments>
+            <local:AutoPage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="TELEOP">
+        <x:Arguments>
+            <local:TeleopPage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="ENDGAME">
+        <x:Arguments>
+            <local:EndgamePage />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="REPORTS">
+        <x:Arguments>
+            <local:ReportsPage />
+        </x:Arguments>
+    </NavigationPage>
+
+</TabbedPage>
